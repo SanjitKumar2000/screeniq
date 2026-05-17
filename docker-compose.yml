@@ -1,0 +1,21 @@
+version: "3.9"
+
+# Optional: just for local Postgres. App services run with npm/python locally.
+# Usage:
+#   docker compose up -d postgres
+#   then point DATABASE_URL=postgres://screeniq:screeniq@localhost:5432/screeniq
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: screeniq
+      POSTGRES_PASSWORD: screeniq
+      POSTGRES_DB: screeniq
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
