@@ -30,7 +30,10 @@ class ScreeningResult:
 
 
 def _client() -> OpenAI:
-    return OpenAI(api_key=settings.OPENAI_API_KEY)
+    return OpenAI(
+        api_key=settings.OPENAI_API_KEY,
+        base_url=settings.OPENAI_BASE_URL,
+    )
 
 
 def screen_blocking(job_description: str, resume: str) -> ScreeningResult:
@@ -45,7 +48,6 @@ def screen_blocking(job_description: str, resume: str) -> ScreeningResult:
             {"role": "user", "content": build_user_prompt(job_description, resume)},
         ],
         temperature=0.2,  # low — we want consistency, not creativity
-        response_format={"type": "json_object"},
         timeout=30,
     )
     raw = resp.choices[0].message.content or ""
@@ -68,7 +70,6 @@ def screen_streaming(job_description: str, resume: str) -> Iterator[str]:
             {"role": "user", "content": build_user_prompt(job_description, resume)},
         ],
         temperature=0.2,
-        response_format={"type": "json_object"},
         stream=True,
         timeout=30,
     )

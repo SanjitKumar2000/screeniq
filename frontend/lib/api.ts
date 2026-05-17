@@ -114,4 +114,12 @@ export async function listApplications(
   return res.json();
 }
 
+export async function getApplication(
+  id: number,
+): Promise<ApplicationDetail> {
+  const res = await apiFetch(`/api/applications/${id}/`);
+  if (!res.ok) throw new Error(`Failed to load application: ${res.status}`);
+  return res.json();
+}
+
 export const API_BASE = BASE;

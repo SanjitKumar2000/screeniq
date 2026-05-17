@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import logging
 
+from django.conf import settings
 from django.http import StreamingHttpResponse
 from rest_framework import status
 from rest_framework.generics import ListAPIView
@@ -82,7 +83,7 @@ class ScreenCandidateView(APIView):
             ai_score=result.score,
             ai_reasons=result.reasons,
             ai_raw_response=result.raw_response,
-            ai_provider="openai",
+            ai_provider=settings.AI_PROVIDER,
             ai_model=result.model,
             created_by=request.user,
         )
@@ -127,9 +128,7 @@ class ScreenCandidateStreamView(APIView):
                     yield f"event: token\ndata: {payload}\n\n"
 
                 raw = "".join(buffer)
-                from django.conf import settings as dj_settings
-
-                result = _result_from_raw(raw, dj_settings.OPENAI_MODEL)
+                result = _result_from_raw(raw, settings.OPENAI_MODEL)
                 app = Application.objects.create(
                     job_description=data["job_description"],
                     resume=data["resume"],
@@ -137,7 +136,7 @@ class ScreenCandidateStreamView(APIView):
                     ai_score=result.score,
                     ai_reasons=result.reasons,
                     ai_raw_response=result.raw_response,
-                    ai_provider="openai",
+                    ai_provider=settings.AI_PROVIDER,
                     ai_model=result.model,
                     created_by=user,
                 )

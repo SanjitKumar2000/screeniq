@@ -94,10 +94,11 @@ CORS_ALLOWED_ORIGINS = env.list(
     default=["http://localhost:3000"],
 )
 
-# Secrets / AI
-OPENAI_API_KEY = env("OPENAI_API_KEY", default="")
-OPENAI_MODEL = env("OPENAI_MODEL", default="gpt-4o-mini")
-AI_PROVIDER = env("AI_PROVIDER", default="openai")
+# AI provider
+AI_PROVIDER = env("AI_PROVIDER", default="ollama")
+OPENAI_API_KEY = env("OPENAI_API_KEY", default="ollama")
+OPENAI_MODEL = env("OPENAI_MODEL", default="llama3.1:8b")
+OPENAI_BASE_URL = env("OPENAI_BASE_URL", default="http://localhost:11434/v1")
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
