@@ -4,9 +4,6 @@ A lightweight internal tool for HR teams to screen job applicants with AI.
 Paste a job description and a resume, get a calibrated fit score (1–10) and
 three bullet-point reasons. Past screenings are stored and browsable.
 
-> Take-home assignment submission. The scoring rubric weights written
-> reasoning equal to code — this README is where I justify every non-trivial
-> decision.
 
 > **AI assistance disclosure:** I used Claude Code (Anthropic's CLI coding
 > assistant) as a development aid during this submission — for debugging,
