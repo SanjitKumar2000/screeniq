@@ -8,6 +8,11 @@ three bullet-point reasons. Past screenings are stored and browsable.
 > reasoning equal to code — this README is where I justify every non-trivial
 > decision.
 
+> **AI assistance disclosure:** I used Claude Code (Anthropic's CLI coding
+> assistant) as a development aid during this submission — for debugging,
+> refactoring, and documentation. I have reviewed all changes and stand
+> behind the decisions and explanations in this README as my own.
+
 ---
 
 ## Contents
